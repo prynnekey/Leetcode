@@ -54,7 +54,20 @@ package main
  * }
  */
 func deleteDuplicates(head *ListNode) *ListNode {
+	if head == nil {
+		return nil
+	}
+	// 因为是已经排序的链表，所以只需要比较当前节点和下一个节点的值是否相等即可
+	curNode := head
+	for curNode.Next != nil {
+		if curNode.Val == curNode.Next.Val {
+			curNode.Next = curNode.Next.Next
+		} else {
+			curNode = curNode.Next
+		}
+	}
 
+	return head
 }
 
 // @lc code=end
