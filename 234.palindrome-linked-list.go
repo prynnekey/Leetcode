@@ -47,8 +47,6 @@
  */
 package main
 
-import "fmt"
-
 // @lc code=start
 /**
  * Definition for singly-linked list.
@@ -88,7 +86,3 @@ func isPalindrome(head *ListNode) bool {
 }
 
 // @lc code=end
-func main() {
-	head := ListNode{Val: 1, Next: &ListNode{Val: 2, Next: &ListNode{Val: 2, Next: &ListNode{Val: 1, Next: nil}}}}
-	fmt.Printf("isPalindrome(&head): %v\n", isPalindrome(&head))
-}
