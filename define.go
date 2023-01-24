@@ -2,6 +2,8 @@ package main
 
 import "fmt"
 
+// -----------------链表-----------------
+
 // 链表
 type ListNode struct {
 	Val  int
@@ -11,7 +13,23 @@ type ListNode struct {
 // 遍历链表
 func (head *ListNode) traverse() {
 	for head != nil {
-		fmt.Println(head.Val)
+		fmt.Print(head.Val, " ")
 		head = head.Next
 	}
 }
+
+// 反转链表
+func (head *ListNode) reverse() *ListNode {
+	var preNode *ListNode
+	curNode := head
+	for curNode != nil {
+		nextNode := curNode.Next
+		curNode.Next = preNode
+		preNode = curNode
+		curNode = nextNode
+	}
+
+	return preNode
+}
+
+// --------------------------------------
