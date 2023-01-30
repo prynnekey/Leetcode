@@ -81,10 +81,23 @@ func accessTree(root *TreeNode, res *[]int) {
 	accessTree(root.Right, res)
 } */
 
-// 迭代方法
+// 迭代方法 通过栈实现
 func inorderTraversal(root *TreeNode) []int {
-	// 中序遍历
 	res := make([]int, 0)
+	stack := make([]*TreeNode, 0)
+	for root != nil || len(stack) > 0 {
+		// 先将左子树全部入栈
+		for root != nil {
+			stack = append(stack, root)
+			root = root.Left
+		}
+		// 出栈
+		root = stack[len(stack)-1]
+		stack = stack[:len(stack)-1]
+		res = append(res, root.Val)
+		// 访问右子树
+		root = root.Right
+	}
 	return res
 }
 
