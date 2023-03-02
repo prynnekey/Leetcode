@@ -85,12 +85,13 @@ type MyQueue struct {
 	Lock  sync.RWMutex
 }
 
-func Constructor() MyQueue {
-	return MyQueue{
-		Stack: make([]int, 0),
-		Back:  make([]int, 0),
-	}
-}
+// 和146题冲突
+// func Constructor() MyQueue {
+// 	return MyQueue{
+// 		Stack: make([]int, 0),
+// 		Back:  make([]int, 0),
+// 	}
+// }
 
 func (m *MyQueue) Push(x int) {
 	m.Lock.Lock()
