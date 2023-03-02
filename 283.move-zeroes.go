@@ -52,19 +52,17 @@ package main
 
 // @lc code=start
 func moveZeroes(nums []int) {
-	// 将所有非零元素移动到最前面
-	var j int
-	for _, v := range nums {
-		if v != 0 {
-			nums[j] = v
-			j++
+	count := 0
+	for _, num := range nums {
+		if num != 0 {
+			nums[count] = num
+			count++
 		}
 	}
 
-	// 将后置位置为0
-	for j < len(nums) {
-		nums[j] = 0
-		j++
+	for count < len(nums) {
+		nums[count] = 0
+		count++
 	}
 }
 
