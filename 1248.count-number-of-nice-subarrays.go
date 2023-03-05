@@ -65,12 +65,10 @@ func numberOfSubarrays(nums []int, k int) int {
 		sum[i+1] = sum[i] + num%2
 	}
 
-	count := make([]int, len(sum))
+	hash := make(map[int]int)
 	for _, s := range sum {
-		if s-k >= 0 {
-			res += count[s-k]
-		}
-		count[s]++
+		res += hash[s-k]
+		hash[s]++
 	}
 
 	return res
