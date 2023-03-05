@@ -97,7 +97,7 @@ func minPathSum(grid [][]int) int {
 			} else if j == 0 {
 				grid[i][0] += grid[i-1][0]
 			} else {
-				grid[i][j] += min(grid[i-1][j], grid[i][j-1])
+				grid[i][j] += min_64(grid[i-1][j], grid[i][j-1])
 			}
 		}
 	}
@@ -105,7 +105,7 @@ func minPathSum(grid [][]int) int {
 	return grid[m-1][n-1]
 }
 
-func min(nums ...int) int {
+func min_64(nums ...int) int {
 	minNum := math.MaxInt
 	for _, num := range nums {
 		if minNum > num {
