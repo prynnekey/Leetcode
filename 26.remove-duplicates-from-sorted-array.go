@@ -74,6 +74,11 @@ package main
 
 // @lc code=start
 func removeDuplicates(nums []int) int {
+	// 参数校验
+	if len(nums) == 0 {
+		return 0
+	}
+
 	count := 0
 	for j := count + 1; j < len(nums); j++ {
 		if nums[count] != nums[j] {
@@ -81,6 +86,7 @@ func removeDuplicates(nums []int) int {
 			count++
 		}
 	}
+
 	return count + 1
 }
 
