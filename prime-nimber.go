@@ -1,11 +1,5 @@
 package main
 
-import (
-	"fmt"
-	"sync"
-	"time"
-)
-
 // 统计n以内素数的个数
 //
 // 暴力解法
@@ -63,7 +57,7 @@ func eratosthenes(n int) int {
 	return count
 }
 
-func main() {
+/* func main() {
 	num := 10000000
 
 	wg := sync.WaitGroup{}
@@ -88,4 +82,4 @@ func main() {
 	}()
 
 	wg.Wait()
-}
+} */
