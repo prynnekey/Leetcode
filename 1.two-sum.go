@@ -25,3 +25,24 @@ func twoSum(nums []int, target int) []int {
 }
 
 // @lc code=end
+
+// 给定一个升序数组,求两数之和=target
+//
+// 双指针法
+func twoSumOrder(nums []int, target int) []int {
+	left, right := 0, len(nums)-1
+
+	for left < right {
+		sum := nums[left] + nums[right]
+		if sum == target {
+			// 找到了
+			return []int{left, right}
+		} else if sum > target {
+			right--
+		} else {
+			left++
+		}
+	}
+
+	return nil
+}
