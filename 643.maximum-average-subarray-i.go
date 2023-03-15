@@ -49,24 +49,41 @@
  */
 package main
 
-import (
-	"math"
-)
-
 // @lc code=start
+
+// 前缀和解法
+// func findMaxAverage(nums []int, k int) float64 {
+// 	// 前缀和
+// 	preSum := make([]int, len(nums)+1)
+// 	for i := 1; i < len(preSum); i++ {
+// 		preSum[i] = preSum[i-1] + nums[i-1]
+// 	}
+//
+// 	max := math.MinInt
+//
+// 	// 连续子数组的最大值
+// 	for i, j := 0, k; j < len(preSum); i, j = i+1, j+1 {
+// 		sum := preSum[j] - preSum[i]
+// 		max = max643(max, sum)
+// 	}
+//
+// 	return float64(max) / float64(k)
+// }
+
+// 滑动窗口
 func findMaxAverage(nums []int, k int) float64 {
-	// 前缀和
-	preSum := make([]int, len(nums)+1)
-	for i := 1; i < len(preSum); i++ {
-		preSum[i] = preSum[i-1] + nums[i-1]
+	sum := 0
+	n := len(nums)
+
+	for i := 0; i < k; i++ {
+		sum += nums[i]
 	}
 
-	max := math.MinInt
+	max := sum
 
-	// 连续子数组的最大值
-	for i, j := 0, k; j < len(preSum); i, j = i+1, j+1 {
-		sum := preSum[j] - preSum[i]
-		max = max643(max, sum)
+	for i := k; i < n; i++ {
+		sum = sum - nums[i-k] + nums[i]
+		max = max643(sum, max)
 	}
 
 	return float64(max) / float64(k)
