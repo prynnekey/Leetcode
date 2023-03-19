@@ -77,7 +77,7 @@ func maxSubArray(nums []int) int {
 	res := math.MinInt
 
 	for i := 1; i < len(sum); i++ {
-		res = max(res, sum[i]-preMin[i-1])
+		res = max53(res, sum[i]-preMin[i-1])
 	}
 
 	return res
@@ -90,7 +90,7 @@ func min(a, b int) int {
 	return a
 }
 
-func max(a, b int) int {
+func max53(a, b int) int {
 	if a < b {
 		return b
 	}
