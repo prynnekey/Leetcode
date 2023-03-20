@@ -69,68 +69,103 @@
  */
 package main
 
-import (
-	"strings"
-)
-
 // @lc code=start
 
 // 暴力BF
+// func predictPartyVictory(senate string) string {
+// 	length := len(senate)
+// 	// 是否有权力，0代表有权力，1没有
+// 	right := make([]bool, length)
+//
+// 	rCount := strings.Count(senate, "R")
+// 	dCount := strings.Count(senate, "D")
+//
+// 	victory := ""
+//
+// 	for {
+// 		// 判断是否终止 --> 有一方人数为0
+// 		if rCount <= 0 {
+// 			// D胜利了
+// 			victory = "Dire"
+// 			break
+// 		}
+//
+// 		if dCount <= 0 {
+// 			// R胜利了
+// 			victory = "Radiant"
+// 			break
+// 		}
+//
+// 		// 每一轮的循环
+// 		// 当前阵营 camp
+// 		for i := 0; i < length; i++ {
+// 			// 判断当前成员有没有权利
+// 			if right[i] {
+// 				continue
+// 			}
+//
+// 			camp := senate[i]
+//
+// 			// 找到另一方阵营
+// 			// 先干掉后面的人
+// 			for j := (i + 1) % length; j != i; j = (j + 1) % length {
+// 				// 双方阵营不同
+// 				if camp != senate[j] && !right[j] {
+// 					// 将权力剥夺
+// 					right[j] = true
+//
+// 					if senate[j] == 'R' {
+// 						rCount--
+// 					} else {
+// 						dCount--
+// 					}
+//
+// 					break
+// 				}
+// 			}
+// 		}
+// 	}
+//
+// 	return victory
+// }
+
+// 贪心+队列
 func predictPartyVictory(senate string) string {
-	length := len(senate)
-	// 是否有权力，0代表有权力，1没有
-	right := make([]bool, length)
-
-	rCount := strings.Count(senate, "R")
-	dCount := strings.Count(senate, "D")
-
-	victory := ""
-
-	for {
-		// 判断是否终止 --> 有一方人数为0
-		if rCount <= 0 {
-			// D胜利了
-			victory = "Dire"
-			break
-		}
-
-		if dCount <= 0 {
-			// R胜利了
-			victory = "Radiant"
-			break
-		}
-
-		// 每一轮的循环
-		// 当前阵营 camp
-		for i := 0; i < length; i++ {
-			// 判断当前成员有没有权利
-			if right[i] {
-				continue
-			}
-
-			camp := senate[i]
-
-			// 找到另一方阵营
-			// 先干掉后面的人
-			for j := (i + 1) % length; j != i; j = (j + 1) % length {
-				// 双方阵营不同
-				if camp != senate[j] && !right[j] {
-					// 将权力剥夺
-					right[j] = true
-
-					if senate[j] == 'R' {
-						rCount--
-					} else {
-						dCount--
-					}
-
-					break
-				}
-			}
+	// 存储R或D的下标
+	radiant, dire := []int{}, []int{}
+	// 入队
+	for i, v := range senate {
+		if v == 'R' {
+			radiant = append(radiant, i)
+		} else {
+			dire = append(dire, i)
 		}
 	}
 
-	return victory
+	length := len(senate)
+
+	// 队列不为空
+	for len(radiant) > 0 && len(dire) > 0 {
+		// 出队
+		rIndex := radiant[0]
+		radiant = radiant[1:]
+
+		dIndex := dire[0]
+		dire = dire[1:]
+
+		// 干掉比较大的
+		if rIndex > dIndex {
+			dire = append(dire, dIndex+length)
+		} else {
+			radiant = append(radiant, rIndex+length)
+		}
+	}
+
+	if len(radiant) == 0 {
+		return "Dire"
+	}
+
+	return "Radiant"
 }
 
 // @lc code=end
