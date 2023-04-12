@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"time"
+)
 
 // 希尔排序
 //
@@ -40,10 +43,14 @@ func shellSort(a []int) {
 }
 
 func main() {
-	a := []int{69, 39, 77, 23, 32, 45, 58, 63, 93, 4, 37, 22}
+	a := []int{69, 39, 77, 23, 32, 45, 58, 63, 93, 4, 37, 22, 11, 12, 44, 94, 3432, 123, 56, 734, 341, 2334, 444, 5556, 777, 773, 223, 98, 876, 123}
 	// a := []int{7, 3, 5, 9, 2}
 
+	start := time.Now()
 	shellSort(a)
 
+	elapsed := time.Since(start)
+
 	fmt.Printf("a: %v\n", a)
+	fmt.Println("该函数执行完成耗时：", elapsed)
 }
