@@ -14,14 +14,11 @@ func insertSort(a []int) {
 		curValue := a[i]
 
 		// 遍历已排序的元素 找到要插入的位置
-		for j := i - 1; j >= 0; j-- {
-			// 当前元素是否小于已排序的元素
-			if curValue < a[j] {
-				// 交换位置
-				a[insertIndex] = a[j]
+		for insertIndex >= 1 {
+			// 判断当前元素是否小于要插入位置的元素
+			if curValue < a[insertIndex-1] {
+				a[insertIndex] = a[insertIndex-1]
 				insertIndex--
-			} else {
-				break
 			}
 		}
 
