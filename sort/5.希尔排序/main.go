@@ -37,7 +37,9 @@ func shellSort(a []int) {
 			// 插入
 			a[insertIndex] = curValue
 		}
-
+		fmt.Printf("本轮增量【%d】,排序后的数组\n", gap)
+		fmt.Printf("a: %v\n", a)
+		fmt.Println("----------------------------")
 		gap /= 2
 	}
 }
@@ -48,9 +50,7 @@ func main() {
 
 	start := time.Now()
 	shellSort(a)
-
 	elapsed := time.Since(start)
 
-	fmt.Printf("a: %v\n", a)
 	fmt.Println("该函数执行完成耗时：", elapsed)
 }
