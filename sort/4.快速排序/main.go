@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"math/rand"
 )
 
 // 快速排序
@@ -40,7 +41,7 @@ func partition(a []int, start, end int) int {
 	// 基准数
 	// rand.Seed(time.Now().UnixNano())
 	// pivot := rand.Intn(end - start + 1)
-	pivot := start
+	pivot := rand.Intn(end-start+1) + start
 
 	// 将基准数和最后一位交换位置
 	swap(a, end, pivot)
